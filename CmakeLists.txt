@@ -1,0 +1,37 @@
+cmake_minimum_required(VERSION 3.10)
+project(Invader)
+
+# VS Codeのエラー波線を消す（IntelliSense連携）ための魔法
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# C++ 17を使用する
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Mac (Homebrew) でインストールしたSDL2を見つけるためのパス設定
+list(APPEND CMAKE_PREFIX_PATH "/opt/homebrew")
+
+# SDL2ライブラリを検索して読み込む
+find_package(SDL2 REQUIRED)
+
+# ここでソースを追加
+set(SOURCES
+    main.cpp
+    # 今後コンポーネントを作ったら、以下のようのコメントを外して追加します
+    # src/TransformComponent.cpp
+    # src/Player.cpp
+)
+
+
+# 実行ファイル「Invader」を作成
+add_executable(Invader ${SOURCES})
+
+# インクルードパス（SDL2のヘッダーファイルの場所）を指定
+target_include_directories(Invader PRIVATE 
+    ${SDL2_INCLUDE_DIRS}
+)
+
+# リンクするライブラリ（SDL2の本体）を指定
+target_link_libraries(Invader PRIVATE 
+    ${SDL2_LIBRARIES}
+)
