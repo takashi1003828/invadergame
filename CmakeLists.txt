@@ -14,24 +14,30 @@ list(APPEND CMAKE_PREFIX_PATH "/opt/homebrew")
 # SDL2ライブラリを検索して読み込む
 find_package(SDL2 REQUIRED)
 
-# ここでソースを追加
-set(SOURCES
-    main.cpp
-    # 今後コンポーネントを作ったら、以下のようのコメントを外して追加します
-    # src/TransformComponent.cpp
-    # src/Player.cpp
-)
+find_path(SDL_IMAGE_INCLUDE_DIR SDL_image.h HINTS /opt/homebrew/include/SDL2)
+find_library(SDL2_IMAGE_LIBRARY SDL2_image HINTS /opt/homebrew/lib)
 
+set(SOURCES
+    src/main.cpp
+    src/Core/Game.cpp
+    src/Core/Actor.cpp
+    src/Core/Component.cpp
+    src/Core/SpriteComponent.cpp
+    src/Player.cpp
+)
 
 # 実行ファイル「Invader」を作成
 add_executable(Invader ${SOURCES})
 
-# インクルードパス（SDL2のヘッダーファイルの場所）を指定
+# インクルードパスの指定
 target_include_directories(Invader PRIVATE 
     ${SDL2_INCLUDE_DIRS}
+    ${SDL2_IMAGE_INCLUDE_DIR}
+    ${CMAKE_SOURCE_DIR}/src  
 )
 
 # リンクするライブラリ（SDL2の本体）を指定
 target_link_libraries(Invader PRIVATE 
     ${SDL2_LIBRARIES}
+    ${SDL2_IMAGE_LIBRARY}
 )
