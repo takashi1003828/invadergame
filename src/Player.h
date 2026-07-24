@@ -7,4 +7,7 @@ public:
 
     //移動処理を書くためオーバーライド
     void UpdateActor(float deltaTime) override;
+
+private:
+    float mCooldown;
 };

@@ -24,6 +24,12 @@ set(SOURCES
     src/Core/Component.cpp
     src/Core/SpriteComponent.cpp
     src/Player.cpp
+    src/Core/InputComponent.cpp
+    src/Core/MoveComponent.cpp
+    src/Bullet.cpp
+    src/SpawnManager.cpp
+    src/Enemy.cpp
+    src/Core/CircleComponent.cpp
 )
 
 # 実行ファイル「Invader」を作成

@@ -1,7 +1,7 @@
 #include "Core/Game.h"
 #include "Core/Actor.h"
 #include "Core/SpriteComponent.h"
-#include "Player.h"
+#include "SpawnManager.h"
 #include <SDL2/SDL_image.h>
 
 //コンストラクタ
@@ -32,11 +32,13 @@ bool Game::Initialize(){
     if(!mRenderer){
         return false;
     }
+
+    SDL_StopTextInput();
+
     //時間取得
     mTicksCount = SDL_GetTicks();
 
-    //プレイヤー作成
-    new Player(this);
+    new SpawnManager(this);
 
     return true;
 }

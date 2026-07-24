@@ -28,6 +28,9 @@ public:
     //Textureを持ってくるための関数
     SDL_Texture* GetTexture(const std::string& fileName);
 
+    //アクターのリストを取得する
+    const std::vector<Actor*>& GetActors() const {return mActors; }
+
 private:
 
     //ゲームループを構成する3つの主要ステップ

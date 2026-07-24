@@ -27,7 +27,12 @@ void Actor::UpdateComponents(float deltaTime){
 
 //更新処理
 void Actor::Update(float deltaTime){
-    //ベースクラスでは何もしないPlayerクラス等で具体的に
+    if(mState == EActive)
+    {
+        UpdateComponents(deltaTime);
+
+        UpdateActor(deltaTime);
+    }
 }
 
 //パーツを追加する
