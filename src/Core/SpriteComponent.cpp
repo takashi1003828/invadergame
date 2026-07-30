@@ -14,6 +14,10 @@ SpriteComponent::~SpriteComponent(){
 }
 
 void SpriteComponent::Draw(SDL_Renderer* renderer){
+    if (!mIsVisible) 
+    {
+        return;
+    }
     if(mTexture){
         SDL_Rect r;
         r.w = static_cast<int>(mTexWidth * mOwner->GetScale());

@@ -10,6 +10,9 @@ public:
     virtual void Draw(SDL_Renderer* renderer);
     virtual void SetTexture(SDL_Texture* texture);
 
+    void SetVisible(bool visible){mIsVisible = visible; }
+    bool GetVisible() const { return mIsVisible; }
+
     int GetDrawOrder() const { return mDrawOrder; }
     int GetTexHeight() const { return mTexHeight; }
     int GetTexWidth() const { return mTexWidth; }
@@ -19,5 +22,6 @@ protected:
     int mDrawOrder;
     int mTexWidth;
     int mTexHeight;
+    bool mIsVisible = true;
 
 };

@@ -11,6 +11,10 @@ public:
     void SpawnPlayer();
     void SpawnEnemies(int stage);
 
+    void NextStage();
+
+    void Reset();
+
 private:
     int mCurrentStage;
 };

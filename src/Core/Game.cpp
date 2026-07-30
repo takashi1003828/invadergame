@@ -3,6 +3,7 @@
 #include "Core/SpriteComponent.h"
 #include "SpawnManager.h"
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 
 //コンストラクタ
 //mのつくローカルな変数の初期化
@@ -30,6 +31,13 @@ bool Game::Initialize(){
     //レンダラーの作成
     mRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if(!mRenderer){
+        return false;
+    }
+
+    //フォントの初期化
+    if(TTF_Init() != 0)
+    {
+        SDL_Log("フォントシステム初期化失敗： %s",TTF_GetError());
         return false;
     }
 
@@ -133,6 +141,7 @@ void Game::GenerateOutput(){
 void Game::Shutdown(){
     SDL_DestroyRenderer(mRenderer);
     SDL_DestroyWindow(mWindow);
+    TTF_Quit();
     SDL_Quit();
 }
 

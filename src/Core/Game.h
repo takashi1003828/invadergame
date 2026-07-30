@@ -31,6 +31,9 @@ public:
     //アクターのリストを取得する
     const std::vector<Actor*>& GetActors() const {return mActors; }
 
+    //レンダラーを取得するゲッターを追加
+    SDL_Renderer* GetRenderer() const { return mRenderer; }
+
 private:
 
     //ゲームループを構成する3つの主要ステップ

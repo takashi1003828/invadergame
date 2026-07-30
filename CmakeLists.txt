@@ -16,6 +16,8 @@ find_package(SDL2 REQUIRED)
 
 find_path(SDL_IMAGE_INCLUDE_DIR SDL_image.h HINTS /opt/homebrew/include/SDL2)
 find_library(SDL2_IMAGE_LIBRARY SDL2_image HINTS /opt/homebrew/lib)
+find_path(SDL_TTF_INCLUDE_DIR SDL_ttf.h HINTS /opt/homebrew/include/SDL2)
+find_library(SDL2_TTF_LIBRARY SDL2_ttf HINTS /opt/homebrew/lib)
 
 set(SOURCES
     src/main.cpp
@@ -30,6 +32,10 @@ set(SOURCES
     src/SpawnManager.cpp
     src/Enemy.cpp
     src/Core/CircleComponent.cpp
+    src/GameManager.cpp
+    src/UIManager.cpp
+    src/Core/BlinkComponent.cpp
+    src/Core/TextComponent.cpp
 )
 
 # 実行ファイル「Invader」を作成
@@ -39,6 +45,7 @@ add_executable(Invader ${SOURCES})
 target_include_directories(Invader PRIVATE 
     ${SDL2_INCLUDE_DIRS}
     ${SDL2_IMAGE_INCLUDE_DIR}
+    ${SDL_TTF_INCLUDE_DIR}
     ${CMAKE_SOURCE_DIR}/src  
 )
 
@@ -46,4 +53,5 @@ target_include_directories(Invader PRIVATE
 target_link_libraries(Invader PRIVATE 
     ${SDL2_LIBRARIES}
     ${SDL2_IMAGE_LIBRARY}
+    ${SDL2_TTF_LIBRARY}
 )
